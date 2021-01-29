@@ -92,23 +92,19 @@ export default {
 }
 .item-draggable {
   cursor: grab;
-  padding-top: 20px;
+  padding-top: 2px;
   margin-right: 8px;
+  margin-top: 18px;
   display: inline-block;
-  width: 16px;
-  height: 8px;
+  width: 24px;
+  min-width: 24px;
+  border-top: 2px solid grey;
 }
-.item-draggable,
+.item-draggable::after,
 .item-draggable::before {
-  background-image: radial-gradient(black 40%, transparent 40%);
-  background-size: 4px 4px;
-  background-position: 0 100%;
-  background-repeat: repeat-x;
-}
-.item-draggable::before {
-  content: "";
   display: block;
-  width: 100%;
-  height: 33%;
+  content: "";
+  border-top: 2px solid grey;
+  padding-top: 2px;
 }
 </style>
