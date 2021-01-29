@@ -5,20 +5,28 @@
     </div>
     <div class="filters">
       <div>
-        <input type="checkbox" value="n" v-model="filters" />
-        <span>noun</span>
+        <label>
+          <input type="checkbox" value="n" v-model="filters" />
+          noun
+        </label>
       </div>
       <div>
-        <input type="checkbox" value="v" v-model="filters" />
-        <span>verb</span>
+        <label>
+          <input type="checkbox" value="v" v-model="filters" />
+          verb
+        </label>
       </div>
       <div>
-        <input type="checkbox" value="adj" v-model="filters" />
-        <span>adjective</span>
+        <label>
+          <input type="checkbox" value="adj" v-model="filters" />
+          adjective
+        </label>
       </div>
       <div>
-        <input type="checkbox" value="adv" v-model="filters" />
-        <span>adverb</span>
+        <label>
+          <input type="checkbox" value="adv" v-model="filters" />
+          adverb
+        </label>
       </div>
     </div>
   </div>
@@ -63,6 +71,9 @@ export default {
 };
 </script>
 <style lang="scss">
+label:hover {
+  cursor: pointer;
+}
 .filters {
   padding: 12px;
 
