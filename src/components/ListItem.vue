@@ -61,6 +61,7 @@ export default {
 
   &-name {
     cursor: pointer;
+    text-decoration: underline;
   }
   &-favourite {
     cursor: pointer;
