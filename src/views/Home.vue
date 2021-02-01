@@ -23,7 +23,7 @@
 import ListItem from "@/components/ListItem";
 import Search from "@/components/Search";
 import { mapGetters } from "vuex";
-import { datamuseApi } from "@/helpers/DatamuseApi.js";
+import { DatamuseApi } from "@/helpers/DatamuseApi.js";
 export default {
   name: "Home",
   components: {
@@ -74,10 +74,9 @@ export default {
           : null;
       });
     },
-    getWords(val) {
-      datamuseApi(val, this.filters, this.isFavourite).then(responce => {
-        this.words = responce;
-      });
+    async getWords(val) {
+      let datamuseApi = new DatamuseApi(val, this.filters, this.isFavourite);
+      this.words = await datamuseApi.getWords();
     }
   }
 };
