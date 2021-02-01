@@ -12,9 +12,8 @@ class DatamuseApi extends Request {
 
     async getWords() {
         let result = await this.request().then(responce => {
-          let data = [];
           let wordsArray = [];
-          data = responce
+          let data = responce
             .filter(x => x.defs)
             .map(x => {
               x.defenitions = {};
@@ -31,23 +30,24 @@ class DatamuseApi extends Request {
             .sort((a, b) => (a.word > b.word ? 1 : b.word > a.word ? -1 : 0));
           data.forEach(x => {
             for (let key in x.defenitions) {
-              let wordItem = {};
-              wordItem.type = key;
-              wordItem.word = x.word;
-              wordItem.defenitions = x.defenitions[key];
-              wordItem.transcription = x.transcription;
-              wordItem.expand = false;
-              wordItem.favourite = this.isFavourite(wordItem);
-              wordsArray.push(wordItem);
-            }
+                let wordItem = {
+                  type: key,
+                  word: x.word,
+                  defenitions: x.defenitions[key],
+                  transcription: x.transcription,
+                  expand: false
+                };
+                wordItem.favourite = this.isFavourite(wordItem);
+                wordsArray.push(wordItem);
+              }
           });
           wordsArray = wordsArray.filter(x => {
-            if (this.filters.length) {
-              return this.filters.includes(x.type);
-            }
-            return true;
-          });
-          wordsArray = wordsArray.slice(0, 10);
+              if (this.filters.length) {
+                return this.filters.includes(x.type);
+              }
+              return true;
+            })
+            .slice(0, 10);
           return wordsArray;
         });
         return result;
