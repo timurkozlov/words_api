@@ -75,8 +75,12 @@ export default {
       });
     },
     async getWords(val) {
-      let datamuseApi = new DatamuseApi(val, this.filters, this.isFavourite);
-      this.words = await datamuseApi.getWords();
+      const datamuseApi = new DatamuseApi();
+      this.words = await datamuseApi.getWords(
+        val,
+        this.filters,
+        this.isFavourite
+      );
     }
   }
 };
