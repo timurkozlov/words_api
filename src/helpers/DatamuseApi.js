@@ -6,9 +6,9 @@ class DatamuseApi extends Request {
 
   async getWords(word, filters, isFavourite) {
     const path = `words?sp=${word}*&md=pdr&ipa=1`;
-    let result = await this.request(path).then(responce => {
+    const result = await this.request(path).then(responce => {
       let wordsArray = [];
-      let data = responce
+      const data = responce
         .filter(x => x.defs)
         .map(x => {
           x.defenitions = {};
@@ -36,7 +36,7 @@ class DatamuseApi extends Request {
           wordsArray.push(wordItem);
         }
       });
-      wordsArray = wordsArray
+      return wordsArray
         .filter(x => {
           if (filters.length) {
             return filters.includes(x.type);
@@ -44,7 +44,6 @@ class DatamuseApi extends Request {
           return true;
         })
         .slice(0, 10);
-      return wordsArray;
     });
     return result;
   }
